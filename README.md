@@ -39,21 +39,31 @@ O sistema é dividido em **duas camadas principais**:
 
 ---
 
-⚙️ Instalação
-1. Clonar o repositório
-git clone https://github.com/luc4sv/MediApp.git
-cd GerenciamentoDeConsultórioMédico
+## ⚙️ Instalação
 
-2. Configuração do Backend
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/luc4sv/MediApp.git
+cd MediApp
+```
+
+### 2. Configuração do Backend
+
+```bash
 cd backend
 npm install
-cp .env
+cp .env.
 npm run dev
+```
 
-3. Configuração do Frontend
+### 3. Configuração do Frontend
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
 ---
 
