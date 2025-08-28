@@ -39,6 +39,24 @@ O sistema é dividido em **duas camadas principais**:
 
 ---
 
+⚙️ Instalação
+1. Clonar o repositório
+git clone https://github.com/luc4sv/MediApp.git
+cd GerenciamentoDeConsultórioMédico
+
+2. Configuração do Backend
+cd backend
+npm install
+cp .env
+npm run dev
+
+3. Configuração do Frontend
+cd frontend
+npm install
+npm run dev
+
+---
+
 ## 🛡️ Funcionalidades Planejadas
 
 * ✅ Cadastro de pacientes e médicos
