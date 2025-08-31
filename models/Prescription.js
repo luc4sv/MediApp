@@ -31,4 +31,4 @@ const prescriptionSchema = new schema({
 
 const prescription = mongoose.model('Prescription', prescriptionSchema);
 
-export { prescription };
+export default { prescription };

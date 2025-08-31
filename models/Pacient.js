@@ -29,4 +29,4 @@ const pacientSchema = new schema({
 
 const pacient = mongoose.model('Pacient', pacientSchema);
 
-export { pacient };
+export default { pacient };
