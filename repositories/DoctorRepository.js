@@ -1,4 +1,4 @@
-import { Doctor } from '../models/Doctor.js';
+import Doctor from '../models/Doctor.js';
 
 const getAllDoctors = async () => {
     return await Doctor.findAll();
@@ -13,19 +13,19 @@ const getDoctorById = async (id) => {
     }
 }
 
-const saveDoctor = async (name, specialty) => {
+const saveDoctor = async ({ name, login, password, medicalSpecialty, medicalRegistration, email, phone }) => {
     try {
-        const newDoctor = new Doctor({ name, specialty });
+        const newDoctor = new Doctor({ name, login, password, medicalSpecialty, medicalRegistration, email, phone });
         return await newDoctor.save();
-    } catch (error) {   
+    } catch (error) {
         console.error('Error saving doctor:', error);
         throw error;
     }
 }
 
-const updateDoctor = async (id, {name, specialty}) => {
+const updateDoctor = async (id, { name, login, password, medicalSpecialty, medicalRegistration, email, phone }) => {
     try {
-        return await Doctor.findByIdAndUpdate(id, {name, specialty}, { new: true });
+        return await Doctor.findByIdAndUpdate(id, { name, login, password, medicalSpecialty, medicalRegistration, email, phone }, { new: true });
    } catch (error) {
         console.error('Error updating doctor:', error);
         throw error;

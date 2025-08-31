@@ -1,4 +1,4 @@
-import { PacientRepository } from "../repositories/PacientRepository";
+import PacientRepository from "../repositories/PacientRepository";
 
 const getAllPacients = async () => {
     return await PacientRepository.findAllPacients();
@@ -8,12 +8,12 @@ const getPacientById = async (id) => {
     return await PacientRepository.findPacientById(id);    
 }
 
-const createPacient = async (data) => {
-    return await PacientRepository.savePacient(data);
+const savePacient = async ({ name, birthDate, email, phone }) => {
+    return await PacientRepository.savePacient({ name, birthDate, email, phone });
 }
 
-const updatePacient = async (id, data) => {
-    return await PacientRepository.updatePacient(id, data);
+const updatePacient = async ({ name, birthDate, email, phone }) => {
+    return await PacientRepository.updatePacient({ name, birthDate, email, phone });
 }
 
 async function deletePacient(id) {
@@ -23,7 +23,7 @@ async function deletePacient(id) {
 const pacientService = {
     getAllPacients,
     getPacientById,
-    createPacient,
+    savePacient,
     updatePacient,
     deletePacient
 }; 

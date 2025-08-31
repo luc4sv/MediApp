@@ -1,4 +1,4 @@
-import { Prescription } from '../models/Prescription.js';
+import Prescription from '../models/Prescription.js';
 
 const getAllPrescriptions = async () => {
     return await Prescription.find();
@@ -13,24 +13,19 @@ const getPrescriptionById = async (id) => {
     }
 }
 
-const createPrescription = async (data) => {
+const savePrescription = async ({ date, appointmentId, medicine, dosage, instructions }) => {
     try {
-        const newPrescription = new Prescription(data);
+        const newPrescription = new Prescription({ date, appointmentId, medicine, dosage, instructions });
         return await newPrescription.save();
     } catch (error) {
-        console.error('Error creating prescription:', error);
+        console.error('Error saving prescription:', error);
         throw error;
     }
 }
 
-const updatePrescription = async (id, data) => {
+const updatePrescription = async (id, { date, appointmentId, medicine, dosage, instructions }) => {
     try {
-        const prescription = await Prescription.findById(id);
-        if (prescription) {
-            Object.assign(prescription, data);
-            return await prescription.save();
-        }
-        return null;
+        return await Prescription.findByIdAndUpdate(id, { date, appointmentId, medicine, dosage, instructions }, { new: true });
     } catch (error) {
         console.error('Error updating prescription:', error);
         throw error;
@@ -54,7 +49,7 @@ const deletePrescription = async (id) => {
 const prescriptionRepository = {
     getAllPrescriptions,
     getPrescriptionById,
-    createPrescription,
+    savePrescription,
     updatePrescription,
     deletePrescription
 };

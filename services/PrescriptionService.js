@@ -1,4 +1,4 @@
-import { PrescriptionRepository } from '../repositories/PrescriptionRepository.js';
+import PrescriptionRepository from '../repositories/PrescriptionRepository.js';
 
 const getAllPrescriptions = async () => {
     return await PrescriptionRepository.findAllPrescriptions();
@@ -8,12 +8,12 @@ const getPrescriptionById = async (id) => {
     return await PrescriptionRepository.findPrescriptionById(id);
 }
 
-const createPrescription = async (data) => {
-    return await PrescriptionRepository.savePrescription(data);
+const savePrescription = async ({ date, appointmentId, medicine, dosage, instructions }) => {
+    return await PrescriptionRepository.savePrescription({ date, appointmentId, medicine, dosage, instructions });
 }
 
-const updatePrescription = async (id, data) => {
-    return await PrescriptionRepository.updatePrescription(id, data);
+const updatePrescription = async ({ date, appointmentId, medicine, dosage, instructions }) => {
+    return await PrescriptionRepository.updatePrescription({ date, appointmentId, medicine, dosage, instructions });
 }
 
 const deletePrescription = async (id) => {
@@ -23,7 +23,7 @@ const deletePrescription = async (id) => {
 const prescriptionService = {
     getAllPrescriptions,
     getPrescriptionById,
-    createPrescription,
+    savePrescription,
     updatePrescription,
     deletePrescription
 }

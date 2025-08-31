@@ -1,4 +1,4 @@
-import { DoctorRepository } from "../repositories/DoctorRepository";
+import  DoctorRepository from "../repositories/DoctorRepository";
 
 const getAllDoctors = async () => {
     return await DoctorRepository.getAllDoctors();
@@ -8,12 +8,12 @@ const getDoctorById = async (id) => {
     return await DoctorRepository.getDoctorById(id);
 }
 
-const saveDoctor = async (name, specialty) => {
-    return await DoctorRepository.saveDoctor(name, specialty);
+const saveDoctor = async ({ name, login, password, medicalSpecialty, medicalRegistration, email, phone }) => {
+    return await DoctorRepository.saveDoctor( name, login, password, medicalSpecialty, medicalRegistration, email, phone );
 }
 
-const updateDoctor = async (id, {name, specialty}) => {
-    return await DoctorRepository.updateDoctor(id, {name, specialty});
+const updateDoctor = async (id, { name, login, password, medicalSpecialty, medicalRegistration, email, phone}) => {
+    return await DoctorRepository.updateDoctor(id, {name, login, password, medicalSpecialty, medicalRegistration, email, phone});
 }
 
 async function deleteDoctor(id) {
