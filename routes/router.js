@@ -1,8 +1,8 @@
 import express  from 'express';
-import appointmenteController from '../controllers/appointmentController.js';
-import doctorController from '../controllers/doctorController.js';
-import pacientController from '../controllers/pacientController.js';
-import prescriptionController from '../controllers/prescriptionController.js';
+import AppointmentController from './AppointmentController.js';
+import DoctorController from './DoctorController.js';
+import PacientController from './PacientController.js';
+import PrescriptionController from './PrescriptionController.js';
 
 let router = express.Router();
 
@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
   res.status(200).send({ message: 'deu bom'});
 });
 
-router.use('/', pacientController);
-router.use('/', doctorController);
-router.use('/', appointmenteController);
-router.use('/', prescriptionController);
+router.use('/appointments', AppointmentController);
+router.use('/doctors', DoctorController);
+router.use('/pacients', PacientController);
+router.use('/prescriptions', PrescriptionController);
 
 export default router;  

@@ -1,5 +1,5 @@
 import express from 'express';
-import AppointmentService from '../services/AppointmentService';
+import AppointmentService from '../services/AppointmentService.js';
 
 let router = express.Router();  
 
@@ -61,6 +61,5 @@ router.delete('/deleteAppointment/:id', async (req, res) => {
         res.status(500).send({ error: 'Failed to delete appointment' });
     }
 }); 
-
 
 export default router;
