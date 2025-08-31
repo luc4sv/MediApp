@@ -1,9 +1,9 @@
-import {  mongoose }  from "mongoose";   
+import { mongoose }  from "mongoose";   
 
 const schema = mongoose.Schema
 
 const appointmentSchema = new schema({
-    date: {
+        date: {
          type: Date, 
          required: [true, 'Date is required']
         },

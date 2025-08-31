@@ -1,12 +1,8 @@
-import { Mongoose } from "mongoose";
+import { mongoose } from "mongoose";
 
-const schema = Mongoose.Schema
+const schema = mongoose.Schema
 
 const pacientSchema = new schema({
-    pacientId: {
-        type: String,
-        required: [true, 'Pacient ID is required']
-    },
     name: {
         type: String,
         required: [true, 'Name is required']
@@ -17,7 +13,8 @@ const pacientSchema = new schema({
     },
     email: {
         type: String,
-        required: [true, 'Email is required']
+        required: [true, 'Email is required'],
+        unique: true
     },
     phone: {
         type: String,
@@ -30,6 +27,6 @@ const pacientSchema = new schema({
 },
 );
 
-const pacient = Mongoose.model('Pacient', pacientSchema);
+const pacient = mongoose.model('Pacient', pacientSchema);
 
 export { pacient };

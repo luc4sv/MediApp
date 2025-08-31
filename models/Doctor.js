@@ -3,10 +3,6 @@ import { mongoose } from "mongoose";
 const schema = mongoose.Schema
 
 const doctorSchema = new schema({
-        doctorId: {
-            type: String,
-            required: [true, 'Doctor ID is required']
-        },
         name: {
             type: String,
             required: [true, 'Name is required']
@@ -31,7 +27,8 @@ const doctorSchema = new schema({
         },
         email: {
             type: String,
-            required: [true, 'Email is required']
+            required: [true, 'Email is required'],
+            unique: true
         },
         phone: {
             type: String,
