@@ -1,4 +1,4 @@
-import { mongoose }  from "mongoose";   
+import mongoose  from "mongoose";   
 
 const schema = mongoose.Schema
 
@@ -24,4 +24,4 @@ const appointmentSchema = new schema({
 
 const appointment = mongoose.model('Appointment', appointmentSchema);
 
-export default { appointment };
+export default appointment;

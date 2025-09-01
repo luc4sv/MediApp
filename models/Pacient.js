@@ -1,4 +1,4 @@
-import { mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const schema = mongoose.Schema
 
@@ -29,4 +29,4 @@ const pacientSchema = new schema({
 
 const pacient = mongoose.model('Pacient', pacientSchema);
 
-export default { pacient };
+export default pacient;

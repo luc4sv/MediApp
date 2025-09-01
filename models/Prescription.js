@@ -1,4 +1,4 @@
-import { mongoose } from "mongoose";
+import mongoose from "mongoose";
 
 const schema = mongoose.Schema
 
@@ -31,4 +31,4 @@ const prescriptionSchema = new schema({
 
 const prescription = mongoose.model('Prescription', prescriptionSchema);
 
-export default { prescription };
+export default prescription;

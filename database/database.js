@@ -1,13 +1,13 @@
-import { connect, mongoose } from "mongoose";
+import mongoose from "mongoose";
 
-mongoose.connect('mongodb://localhost:27017/mediapp' ); 
+mongoose.connect("mongodb://localhost:27017/MediApp");
 
 const db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'connection error:  '));
 
 db.once('open', function() {
   console.log('Database connected');
 }); 
 
-export default { db };
+export default db;
