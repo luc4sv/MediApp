@@ -7,7 +7,7 @@ import PrescriptionController from './PrescriptionController.js';
 let router = express.Router();
 
 router.get('/', (req, res) => {
-  console.log('Hello, World!');
+  console.log('Hi');
   res.status(200).send({ message: 'deu bom'});
 });
 

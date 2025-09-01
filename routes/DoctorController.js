@@ -29,16 +29,28 @@ router.get('/getDoctor/:id', async (req, res) => {
 router.post('/createDoctor', async (req, res) => {
     try {
         const { name, medicalSpecialty, login, password, medicalRegistration, email, phone } = req.body;
-        const newDoctor = await DoctorService.saveDoctor(name, medicalSpecialty, login, password, medicalRegistration, email, phone);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        
+        const doctorData = {
+            name,
+            medicalSpecialty,
+            login,
+            password: hashedPassword,
+            medicalRegistration,
+            email,
+            phone
+        };
+
+        const newDoctor = await DoctorService.saveDoctor(doctorData);
         res.status(201).json(newDoctor);
+
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create doctor' });
+        res.status(500).json({ message: 'Failed to create doctor.', error: error.message });
     }
 });
 
 router.put('/updateDoctor/:id', async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const { name, medicalSpecialty, login, password, medicalRegistration, email, phone } = req.body;
         const updatedDoctor = await DoctorService.updateDoctor(req.params.id, { name, medicalSpecialty, login, password, medicalRegistration, email, phone });
         if (updatedDoctor) {

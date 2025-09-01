@@ -13,23 +13,25 @@ const getDoctorById = async (id) => {
     }
 }
 
-const saveDoctor = async ({ name, login, password, medicalSpecialty, medicalRegistration, email, phone }) => {
+const saveDoctor = async (doctorData) => {
     try {
-        const newDoctor = new Doctor({ name, login, password, medicalSpecialty, medicalRegistration, email, phone });
-        return await newDoctor.save();
+        const newDoctor = new Doctor(doctorData);
+        const savedDoctor = await newDoctor.save();
+        return savedDoctor;
     } catch (error) {
-        console.error('Error saving doctor:', error);
+        console.error("ERRO DENTRO DO REPOSITORY (MONGOOSE):", error.message);
         throw error;
     }
-}
+};
 
-const updateDoctor = async (id, { name, login, password, medicalSpecialty, medicalRegistration, email, phone }) => {
+const updateDoctor = async (id, updateData) => {
     try {
-        return await Doctor.findByIdAndUpdate(id, { name, login, password, medicalSpecialty, medicalRegistration, email, phone }, { new: true });
-   } catch (error) {
+        const updatedDoctor = await Doctor.findByIdAndUpdate(id, updateData, { new: true });
+        return updatedDoctor;
+    } catch (error) {
         console.error('Error updating doctor:', error);
         throw error;
-   }
+    }
 }
 
 const deleteDoctor = async (id) => {
