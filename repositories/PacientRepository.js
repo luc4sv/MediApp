@@ -1,10 +1,10 @@
 import Pacient from '../models/Pacient.js';
 
-const findAllPacients = async () => {
+const getAllPacients = async () => {
     return await Pacient.findAll();
 }
 
-const findPacientById = async (id) => {
+const getPacientById = async (id) => {
     try {
         return await Pacient.findById(id);
     } catch (error) {
@@ -14,18 +14,18 @@ const findPacientById = async (id) => {
 }
 
 const savePacient = async ({ name, birthDate, email, phone }) => {
-    try {
-        const newPacient = new Pacient({ name, birthDate, email, phone });
-        return await newPacient.save();
-    } catch (error) {
-        console.error('Error saving pacient:', error);
-        throw error;
+    try{
+        const pacient = new Pacient({ name, birthDate, email, phone });
+        return await pacient.save();
+    }catch(error){
+        console.error("ERRO DENTRO DO REPOSITORY (MONGOOSE):", error.message);
+        throw new Error(error);
     }
 }
 
-const updatePacient = async (id, { name, birthDate, email, phone }) => {
+const updatePacient = async (id, pacientData) => {
     try {
-        return await Pacient.findByIdAndUpdate(id, { name, birthDate, email, phone }, { new: true });
+        return await Pacient.findByIdAndUpdate(id, pacientData, { new: true });
     } catch (error) {
         console.error('Error updating pacient:', error);
         throw error;
@@ -34,12 +34,7 @@ const updatePacient = async (id, { name, birthDate, email, phone }) => {
 
 const deletePacient = async (id) => {
     try {
-        const pacient = await Pacient.findById(id);
-        if (pacient) {
-            await pacient.destroy();
-            return true;
-        }
-        return false;
+        return await Pacient.findByIdAndDelete(id);
     } catch (error) {
         console.error('Error deleting pacient:', error);
         throw error;
@@ -47,8 +42,8 @@ const deletePacient = async (id) => {
 }
 
 const pacientRepository = {
-    findAllPacients,
-    findPacientById,
+    getAllPacients,
+    getPacientById,
     savePacient,
     updatePacient,
     deletePacient

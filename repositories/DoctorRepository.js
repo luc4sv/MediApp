@@ -1,7 +1,7 @@
 import Doctor from '../models/Doctor.js';
 
 const getAllDoctors = async () => {
-    return await Doctor.findAll();
+    return await Doctor.find();
 }
 
 const getDoctorById = async (id) => {

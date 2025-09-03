@@ -25,26 +25,27 @@ router.get('/getPacient/:id', async (req, res) => {
     }
 });
 
-router.post('/createPacient', async (req, res) => {
-    try {
-        const { name, birthDate, email, phone } = req.body;
-        const newPacient = await PacientService.createPacient({ name, birthDate, email, phone });
-        res.status(201).json(newPacient);
+router.post("/postPacient", async function(req, res){
+    const { name, birthDate, email, phone } = req.body;
+    try{
+        const pacient = await PacientService.savePacient({ name, birthDate, email, phone });
+        res.send(pacient);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create pacient' });
+        console.error(error);
+        res.status(500).send(error);
     }
 });
 
 router.put('/updatePacient/:id', async (req, res) => {
     try {
-        const { name, birthDate, email, phone } = req.body;
-        const updatedPacient = await PacientService.updatePacient(req.params.id, { name, birthDate, email, phone });
+        const updatedPacient = await PacientService.updatePacient(req.params.id, req.body);
         if (updatedPacient) {
             res.json(updatedPacient);
         } else {
             res.status(404).json({ error: 'Pacient not found' });
         }
     } catch (error) {
+        console.error("Failed to update pacient:", error);
         res.status(500).json({ error: 'Failed to update pacient' });
     }
 });

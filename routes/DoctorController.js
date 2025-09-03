@@ -7,9 +7,9 @@ let router = express.Router();
 router.get('/doctors', async (req, res) => {
     try {
         const doctors = await DoctorService.getAllDoctors();
-        res.json(doctors);
+        res.send(doctors);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch doctors' });
+        res.status(500).send({ error: 'Failed to fetch doctors' });
     }
 });
 
