@@ -13,9 +13,9 @@ const getPrescriptionById = async (id) => {
     }
 }
 
-const savePrescription = async ({ date, appointmentId, medicine, dosage, instructions }) => {
+const savePrescription = async (prescriptionData) => {
     try {
-        const newPrescription = new Prescription({ date, appointmentId, medicine, dosage, instructions });
+        const newPrescription = new Prescription(prescriptionData);
         return await newPrescription.save();
     } catch (error) {
         console.error('Error saving prescription:', error);
@@ -23,9 +23,9 @@ const savePrescription = async ({ date, appointmentId, medicine, dosage, instruc
     }
 }
 
-const updatePrescription = async (id, { date, appointmentId, medicine, dosage, instructions }) => {
+const updatePrescription = async (id, prescriptionData) => {
     try {
-        return await Prescription.findByIdAndUpdate(id, { date, appointmentId, medicine, dosage, instructions }, { new: true });
+        return await Prescription.findByIdAndUpdate(id, prescriptionData, { new: true });
     } catch (error) {
         console.error('Error updating prescription:', error);
         throw error;

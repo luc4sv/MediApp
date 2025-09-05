@@ -8,12 +8,12 @@ const getAppointmentById = async (id) => {
     return await AppointmentRepository.getAppointmentById(id);
 }
 
-const saveAppointment = async (date, doctorId, pacientId) => {
-    return await AppointmentRepository.saveAppointment(date, doctorId, pacientId);
+const saveAppointment = async (date, doctorId, patientId) => {
+    return await AppointmentRepository.saveAppointment(date, doctorId, patientId);
 }
 
-const updateAppointment = async (id, {date, doctorId, pacientId}) => {
-    return await AppointmentRepository.updateAppointment(id, {date, doctorId, pacientId});
+const updateAppointment = async (id, {date, doctorId, patientId}) => {
+    return await AppointmentRepository.updateAppointment(id, {date, doctorId, patientId});
 }
 
 async function deleteAppointment(id) {

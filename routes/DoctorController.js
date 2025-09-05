@@ -4,7 +4,7 @@ import DoctorService from '../services/DoctorService.js';
 
 let router = express.Router();
 
-router.get('/doctors', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const doctors = await DoctorService.getAllDoctors();
         res.send(doctors);
@@ -13,7 +13,7 @@ router.get('/doctors', async (req, res) => {
     }
 });
 
-router.get('/getDoctor/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const doctor = await DoctorService.getDoctorById(req.params.id);
         if (doctor) {
@@ -26,7 +26,7 @@ router.get('/getDoctor/:id', async (req, res) => {
     }
 });
 
-router.post('/createDoctor', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { name, medicalSpecialty, login, password, medicalRegistration, email, phone } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -49,7 +49,7 @@ router.post('/createDoctor', async (req, res) => {
     }
 });
 
-router.put('/updateDoctor/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const { name, medicalSpecialty, login, password, medicalRegistration, email, phone } = req.body;
         const updatedDoctor = await DoctorService.updateDoctor(req.params.id, { name, medicalSpecialty, login, password, medicalRegistration, email, phone });
@@ -63,7 +63,7 @@ router.put('/updateDoctor/:id', async (req, res) => {
     }
 });
 
-router.delete('/deleteDoctor/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deletedDoctor = await DoctorService.deleteDoctor(req.params.id);
         if (deletedDoctor) {

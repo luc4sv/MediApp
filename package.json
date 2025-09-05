@@ -4,10 +4,12 @@
   "description": "Projeto utilizando Next.js e MongoDB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Lucas Santos",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",

@@ -1,7 +1,7 @@
 import Appointment from '../models/Appointment.js';
 
 const  getAllAppointments = async () => {
-    return await Appointment.findAll();
+    return await Appointment.find();
 }
 
 const getAppointmentById = async (id) => {
@@ -13,9 +13,9 @@ const getAppointmentById = async (id) => {
     }
 }
 
-const saveAppointment = async (date, doctorId, pacientId) => {
+const saveAppointment = async (date, doctorId, patientId) => {
     try {
-        const newAppointment = new Appointment({ date, doctorId, pacientId });
+        const newAppointment = new Appointment({ date, doctorId, patientId });
         return await newAppointment.save();
     } catch (error) {   
         console.error('Error saving appointment:', error);
@@ -23,9 +23,9 @@ const saveAppointment = async (date, doctorId, pacientId) => {
     }
 }
 
-const updateAppointment = async (id, {date, doctorId, pacientId}) => {
+const updateAppointment = async (id, {date, doctorId, patientId}) => {
     try {
-        return await Appointment.findByIdAndUpdate(id, {date, doctorId, pacientId}, { new: true });
+        return await Appointment.findByIdAndUpdate(id, {date, doctorId, patientId}, { new: true });
    } catch (error) {
         console.error('Error updating appointment:', error);
         throw error;

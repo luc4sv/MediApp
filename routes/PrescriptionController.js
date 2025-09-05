@@ -3,7 +3,7 @@ import PrescriptionService from '../services/PrescriptionService.js';
 
 let router = express.Router();  
 
-router.get('/prescriptions', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const prescriptions = await PrescriptionService.getAllPrescriptions();
         res.json(prescriptions);
@@ -12,7 +12,7 @@ router.get('/prescriptions', async (req, res) => {
     }
 });
 
-router.get('/getPrescription/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const prescription = await PrescriptionService.getPrescriptionById(req.params.id);
         if (prescription) {
@@ -25,31 +25,35 @@ router.get('/getPrescription/:id', async (req, res) => {
     }
 });
 
-router.post('/savePrescription', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { date, appointmentId, medicine, dosage, instructions } = req.body;
-        const newPrescription = await PrescriptionService.createPrescription({ date, appointmentId, medicine, dosage, instructions });
+        const prescriptionData = { date, appointmentId, medicine, dosage, instructions };
+        const newPrescription = await PrescriptionService.savePrescription(prescriptionData);
         res.status(201).json(newPrescription);
     } catch (error) {
+        console.error('Failed to create prescription:', error);
         res.status(500).json({ error: 'Failed to create prescription' });
     }
 });
 
-router.put('/updatePrescription/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const { date, appointmentId, medicine, dosage, instructions } = req.body;
-        const updatedPrescription = await PrescriptionService.updatePrescription(req.params.id, { date, appointmentId, medicine, dosage, instructions });
+        const prescriptionData = { date, appointmentId, medicine, dosage, instructions };
+        const updatedPrescription = await PrescriptionService.updatePrescription(req.params.id, prescriptionData);
         if (updatedPrescription) {
             res.json(updatedPrescription);
         } else {
             res.status(404).json({ error: 'Prescription not found' });
         }
     } catch (error) {
+        console.error('Failed to update prescription:', error);
         res.status(500).json({ error: 'Failed to update prescription' });
     }
 });
 
-router.delete('/deletePrescription/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deletedPrescription = await PrescriptionService.deletePrescription(req.params.id);
         if (deletedPrescription) {
