@@ -53,7 +53,7 @@ cd MediApp
 ```bash
 cd backend
 npm install
-cp .env.
+npm install bcrypt
 npm run dev
 ```
 
