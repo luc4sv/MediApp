@@ -62,4 +62,18 @@ router.delete('/:id', async (req, res) => {
     }
 }); 
 
+router.put('/reschedule/:id', async (req, res) => {
+    try {
+        const { newDate } = req.body;
+        const rescheduledAppointment = await AppointmentService.rescheduleAppointment(req.params.id, newDate);
+        if (rescheduledAppointment) {
+            res.status(200).send(rescheduledAppointment);
+        } else {
+            res.status(404).send({ error: 'Appointment not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to reschedule appointment' });
+    }
+});
+
 export default router;

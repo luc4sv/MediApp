@@ -20,12 +20,17 @@ async function deleteDoctor(id) {
     return await DoctorRepository.deleteDoctor(id);
 }
 
+const getDoctorByLogin = async (login) => {
+    return await DoctorRepository.getDoctorByLogin(login);
+}
+
 const doctorService = {
     getAllDoctors,
     getDoctorById,
     saveDoctor,
     updateDoctor,
-    deleteDoctor
+    deleteDoctor,
+    getDoctorByLogin
 };
 
 export default doctorService;
