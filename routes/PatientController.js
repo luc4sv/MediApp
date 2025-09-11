@@ -3,7 +3,7 @@ import PatientService from "../services/PatientService.js";
 
 let router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/patients", async (req, res) => {
   try {
     const patients = await PatientService.getAllPatients();
     res.send(patients);
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/patient/:id", async (req, res) => {
   try {
     const patient = await PatientService.getPatientById(req.params.id);
     if (patient) {
@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post ("/", async (req, res) => {
+router.post ("/createPatient", async (req, res) => {
   try {
     const { name, birthDate, email, phone } = req.body;
     const patientData = { name, birthDate, email, phone };
@@ -37,7 +37,7 @@ router.post ("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/updatePatient/:id", async (req, res) => {
   try {
     const updatedPatient = await PatientService.updatePatient(
       req.params.id,
@@ -54,7 +54,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/deletePatient/:id", async (req, res) => {
   try {
     const deletedPatient = await PatientService.deletePatient(req.params.id);
     if (deletedPatient) {

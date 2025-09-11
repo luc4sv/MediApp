@@ -3,7 +3,7 @@ import AppointmentService from '../services/AppointmentService.js';
 
 let router = express.Router();  
 
-router.get('/', async (req, res) => {
+router.get('/appointments', async (req, res) => {
     try {
         const appointments = await AppointmentService.getAllAppointments();
         res.status(200).send(appointments);
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/appointment/:id', async (req, res) => {
     try {
         const appointment = await AppointmentService.getAppointmentById(req.params.id);
         if (appointment) {
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/createAppointment', async (req, res) => {
     try {
         const { date, doctorId, patientId } = req.body;
         const newAppointment = await AppointmentService.saveAppointment(date, doctorId, patientId);
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/updateAppointment/:id', async (req, res) => {
     try {
         const { date, doctorId, patientId } = req.body;
         const updatedAppointment = await AppointmentService.updateAppointment(req.params.id, { date, doctorId, patientId });
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/deleteAppointment/:id', async (req, res) => {
     try {
         const deletedAppointment = await AppointmentService.deleteAppointment(req.params.id);
         if (deletedAppointment) {

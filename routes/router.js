@@ -39,9 +39,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.use('/appointments', verifyToken, AppointmentController);
-router.use('/doctors', verifyToken, DoctorController);
-router.use('/patients', verifyToken, PatientController);
-router.use('/prescriptions', verifyToken, PrescriptionController);
+router.use('/', verifyToken, AppointmentController);
+router.use('/', verifyToken, DoctorController);
+router.use('/', verifyToken, PatientController);
+router.use('/', verifyToken, PrescriptionController);
 
 export default router;
